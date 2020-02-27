@@ -1,0 +1,38 @@
+{
+  "name": "syntax-speed-tests",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "author": "",
+  "license": "UNLICENSED",
+  "scripts": {
+    "lint": "eslint index.js src/**/*.js test/**/*.js",
+    "lint:fix": "eslint --fix index.js src/**/*.js test/**/*.js",
+    "test": "yarn run lint && JUNIT_REPORT_PATH=./target/jenkins-test-results.xml nyc --reporter=json --report-dir=target/coverage mocha --opts test/mocha.opts \"test/unit/**/*.spec.js\" --colors --reporter mocha-jenkins-reporter &&  nyc report --reporter=cobertura --report-dir=target",
+    "test:fast": "nyc mocha --opts test/mocha.opts \"test/unit/**/*.spec.js\"",
+    "gendocs": "jsdoc -d docs index.js && jsdoc2md index.js > api.md",
+    "start": "node index.js"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "eslint": "^6.2.2",
+    "eslint-plugin-import": "^2.9.0",
+    "jsdoc": "^3.6.3",
+    "jsdoc-to-markdown": "^5.0.2",
+    "mocha": "^6.2.0",
+    "mocha-jenkins-reporter": "^0.4.2",
+    "nyc": "^14.1.1"
+  },
+  "dependencies": {
+    "chart.js": "^2.9.3",
+    "chartjs-node": "^1.7.1",
+    "commander": "^4.0.1",
+    "logstub": "^1.3.0",
+    "sequelize": "^5.21.3",
+    "sqlite3": "^4.1.1",
+    "winston": "^3.2.1"
+  }
+}
